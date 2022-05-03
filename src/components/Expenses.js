@@ -12,41 +12,28 @@ function Expenses(props) {
     setYear(year);
   }
 
-  if (year) {
-    return (
-      <Card className="expenses">
-        <ExpensesFilter onFilter={filterHandler} />
-        {expenses.map((expense) => {
-          if (expense.date.getFullYear() == year) {
-            return (
-              <ExpenseItem
-                title={expense.title}
-                amount={expense.amount}
-                date={expense.date}
-                key={expense.id}
-              />
-            );
-          }
-        })}
-      </Card>
-    );
-  } else {
-    return (
-      <Card className="expenses">
-        <ExpensesFilter onFilter={filterHandler} />
-        {expenses.map((expense) => {
-          return (
-            <ExpenseItem
-              title={expense.title}
-              amount={expense.amount}
-              date={expense.date}
-              key={expense.id}
-            />
-          );
-        })}
-      </Card>
-    );
-  }
+  const filteredExpenses =
+    year === ""
+      ? expenses
+      : expenses.filter(
+          (expense) => expense.date.getFullYear().toString() === year
+        );
+
+  return (
+    <Card className="expenses">
+      <ExpensesFilter onFilter={filterHandler} />
+      {filteredExpenses.map((expense) => {
+        return (
+          <ExpenseItem
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+            key={expense.id}
+          />
+        );
+      })}
+    </Card>
+  );
 }
 
 export default Expenses;
