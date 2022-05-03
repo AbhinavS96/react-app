@@ -13,17 +13,19 @@ function ExpenseForm(props) {
     setAmount(event.target.value);
   }
   function dateChangeHandler(event) {
-    const date = new Date(event.target.value);
-    setDate(date);
+    setDate(event.target.value);
   }
   function submitHandler(event) {
     event.preventDefault();
     const inputData = {
       title: title,
       amount: amount,
-      date: date,
+      date: new Date(date),
       id: Math.random(),
     };
+    setTitle("");
+    setAmount("");
+    setDate("");
     props.onSubmit(inputData);
   }
 
@@ -52,9 +54,10 @@ function ExpenseForm(props) {
           <label>Date</label>
           <input
             type="date"
-            min="2019*01-01"
+            min="2019-01-01"
             max="2022-12-31"
             onChange={dateChangeHandler}
+            value={date}
           ></input>
         </div>
       </div>
