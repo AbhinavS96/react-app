@@ -19,7 +19,7 @@ function ExpenseForm(props) {
     event.preventDefault();
     const inputData = {
       title: title,
-      amount: amount,
+      amount: +amount,
       date: new Date(date),
       id: Math.random(),
     };

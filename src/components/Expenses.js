@@ -3,6 +3,7 @@ import "./Expenses.css";
 import ExpenseItem from "./ExpenseItem";
 import Card from "./Card";
 import ExpensesFilter from "./ExpensesFilter";
+import ExpensesChart from "./ExpensesChart";
 
 function Expenses(props) {
   const { expenses } = props;
@@ -22,6 +23,7 @@ function Expenses(props) {
   return (
     <Card className="expenses">
       <ExpensesFilter onFilter={filterHandler} />
+      <ExpensesChart expenses={filteredExpenses} />
       {filteredExpenses.map((expense) => {
         return (
           <ExpenseItem
